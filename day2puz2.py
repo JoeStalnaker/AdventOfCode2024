@@ -23,21 +23,24 @@ def parseInput ( ):
       games[gameNum] = results
   return games
 
-def isValidGame ( results, bagContents ) :
-  valid = True
+def findMinCubes ( results ):
+  minCubes = {"red":0, "green":0, "blue":0}
   for result in results:
-    keys = result.keys()
+    keys = minCubes.keys()
     for key in keys:
-      if int(result[key]) > int(bagContents[key]):
-        valid = False
-  return(valid)
+      if result[key] > minCubes[key]:
+        minCubes[key] = result[key]
+  return minCubes
+
+def getPower ( minCubes ):
+  power = 1
+  for key in minCubes.keys():
+    power *= minCubes[key]
+  return power
 
 games = parseInput()
-bagContents = {"red":12, "green":13, "blue":14}
 total = 0
 keys = games.keys()
 for key in keys:
-  results = games[key]
-  if isValidGame(results, bagContents):
-    total += int(key)
+  total += getPower(FindminCubes(games[key]))
 print(total)
