@@ -24,23 +24,25 @@ def parseInput ( ):
   return games
 
 def findMinCubes ( results ):
+  print(results)
   minCubes = {"red":0, "green":0, "blue":0}
   for result in results:
     keys = minCubes.keys()
     for key in keys:
-      if result[key] > minCubes[key]:
+      if int(result[key]) > int(minCubes[key]):
         minCubes[key] = result[key]
+  print(minCubes)
   return minCubes
 
 def getPower ( minCubes ):
   power = 1
   for key in minCubes.keys():
-    power *= minCubes[key]
+    power *= int(minCubes[key])
   return power
 
 games = parseInput()
 total = 0
 keys = games.keys()
 for key in keys:
-  total += getPower(FindminCubes(games[key]))
+  total += getPower(findMinCubes(games[key]))
 print(total)
